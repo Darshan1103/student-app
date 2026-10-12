@@ -31,13 +31,16 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
+                set "KUBECONFIG=C:\Users\Darshan\.kube\config"
                 bat '''
-                set "PATH=C:\\Users\\Darshan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%"
-                kubectl version --client
-                kubectl apply -f k8s/deployment.yaml
-                
-                kubectl apply -f k8s/service.yaml
-                kubectl rollout status deployment/student-app
+                    set "PATH=C:\\Users\\Darshan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%"
+                    set "KUBECONFIG=C:\\Users\\Darshan\\.kube\\config"
+
+                    kubectl config current-context
+                    kubectl get nodes
+                    kubectl apply -f k8s/deployment.yaml
+                    kubectl apply -f k8s/service.yaml
+                    kubectl rollout status deployment/student-app
                 '''
             }
         }
