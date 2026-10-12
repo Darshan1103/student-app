@@ -31,7 +31,6 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                set "KUBECONFIG=C:\Users\Darshan\.kube\config"
                 bat '''
                     set "PATH=C:\\Users\\Darshan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%"
                     set "KUBECONFIG=C:\\Users\\Darshan\\.kube\\config"
