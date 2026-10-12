@@ -32,7 +32,10 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 bat '''
+                set "PATH=C:\\Users\\Darshan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;%PATH%"
+                kubectl version --client
                 kubectl apply -f k8s/deployment.yaml
+                
                 kubectl apply -f k8s/service.yaml
                 kubectl rollout status deployment/student-app
                 '''
